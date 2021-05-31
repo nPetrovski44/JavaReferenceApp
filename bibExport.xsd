@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="bibliography" type="bibType"/>
+	
+	<xs:complexType name="refJournal">
+		<xs:sequence>
+				<xs:element type="xs:string" name="title"/>
+				<xs:element type="xs:string" name="authors"/>
+				<xs:element type="xs:decimal" name="yearPub"/>
+				<xs:element type="xs:string" name="publisher"/>
+				<xs:element type="xs:string" name="doi"/>
+				<xs:element type="xs:string" name="date"/>
+				<xs:element type="xs:string" name="journalName"/>
+				<xs:element type="xs:decimal" name="volume"/>
+				<xs:element type="xs:decimal" name="issue"/>
+		</xs:sequence>
+			<xs:attribute name="category" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Journals"/>	
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+	</xs:complexType>
+	
+		<xs:complexType name="refConference">
+		<xs:sequence>
+				<xs:element type="xs:string" name="title"/>
+				<xs:element type="xs:string" name="authors"/>
+				<xs:element type="xs:decimal" name="yearPub"/>
+				<xs:element type="xs:string" name="publisher"/>
+				<xs:element type="xs:string" name="doi"/>
+				<xs:element type="xs:string" name="date"/>
+				<xs:element type="xs:string" name="venue"/>
+				<xs:element type="xs:string" name="location"/>
+		</xs:sequence>
+			<xs:attribute name="category" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Conferences"/>	
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+	</xs:complexType>
+	
+	<xs:complexType name="refBooks">
+		<xs:sequence>
+				<xs:element type="xs:string" name="title"/>
+				<xs:element type="xs:string" name="authors"/>
+				<xs:element type="xs:decimal" name="yearPub"/>
+				<xs:element type="xs:string" name="publisher"/>
+				<xs:element type="xs:string" name="doi"/>
+				<xs:element type="xs:string" name="date"/>
+				<xs:element type="xs:string" name="bookTitle"/>
+				<xs:element type="xs:string" name="editor"/>
+		</xs:sequence>
+			<xs:attribute name="category" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Books"/>	
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>	
+	</xs:complexType>
+	
+    <xs:complexType name="refType">
+        <xs:sequence>
+			<xs:element type="refJournal" name="referenceJournal" maxOccurs="unbounded" minOccurs="0"/>
+			<xs:element type="refConference" name="referenceConference" maxOccurs="unbounded" minOccurs="0"/>
+			<xs:element type="refBooks" name="referenceBook" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="bibType">
+		<xs:sequence>
+			<xs:element type="refType" name="referenceGeneral" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+	</xs:complexType>
+</xs:schema>
